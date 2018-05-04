@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Shoe Store</title>
+    <script src="vendor/angular.min.js" charset="utf-8"></script>
+    <script src="scripts/client.js"></script>
+</head>
+
+<body ng-app="ShoeApp">
+
+    <main ng-controller="shoeController as vm">
+        <div id='top'>
+            <h1 id="textHeader">Shoe Store</h1>
+        </div>
+        <div id="shoeTable" class='row'></div>
+        <table>
+            <thread>
+                <tr>
+                    <th id="labelText">Category</th>
+                    <th id="labelText">To Accomplish</th>
+                    <th id="labelText">Done</th>
+                </tr>
+            </thread>
+            <tbody>
+                <tr ng-repeat="shoes in vm.shoesList">››
+                    <td>
+                        <input ng-model="shoes.purchaseEntry">
+                    </td>
+                    <td>
+                        <input ng-model="tasks.tasksEntry">
+                    </td>
+                    <td>
+                        <input type="button" ng-model="shoes.completed" ng-click="vm.completeButton(tasks)" />
+                    </td>
+
+                    <td>
+                        <button ng-click="vm.deleteShoes(shoes)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </main>
+</body>
+
+</html>

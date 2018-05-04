@@ -30,19 +30,20 @@ pool.on('error', (error) => {
 const shoes = [
     {
         name: 'sandals',
-        cost: '15'
+        cost: '15',
+        socks: 'false'
     }
 ];
 
 app.get('/shoe', (req, res) => {
-    console.log('GET /shoes');
+    console.log('GET /shoe');
     res.send(shoes);
 });
 
 app.post('/shoe', (req, res) => {
     const shoe = req.body;
-    pool.query(`INSERT INTO "shoes" ("name", "cost")
-                VALUES ($1, $2);`, [shoe.name, shoe.cost]) 
+    pool.query(`INSERT INTO "shoes" ("name", "cost", "socks")
+                VALUES ($1, $2, $3);`, [shoe.name, shoe.cost, shoe.socks]) 
                 //the shoe.name and shoe.cost is the sanitization for security
             .then((results) => {
                 res.sendStatus(200);
