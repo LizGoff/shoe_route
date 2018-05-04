@@ -24,7 +24,7 @@ pool.on('error', (error) => {
     console.log('Error with Postman pool', error);
 });
 
-// app.use(express.static('server/public'));
+app.use(express.static('server/public'));
 
 
 const shoes = [

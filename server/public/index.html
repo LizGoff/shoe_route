@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="styles/style.css">
     <title>Shoe Store</title>
-    <script src="vendor/angular.min.js" charset="utf-8"></script>
+    <script src="vendor/angular.js" charset="utf-8"></script>
     <script src="scripts/client.js"></script>
 </head>
 
@@ -17,25 +17,44 @@
         <div id='top'>
             <h1 id="textHeader">Shoe Store</h1>
         </div>
-        <div id="shoeTable" class='row'></div>
+        <div>
+                <section>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="text" ng-model="vm.newShoes.name" placeholder="Shoes" required/>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="vm.newShoes.cost" placeholder="Cost" required/>
+                                </td>
+                                <td>
+                                    <button ng-click="vm.createShoeEntry()">Add</button>
+                                </td> 
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        <div id="shoeTable"></div>
         <table>
             <thread>
                 <tr>
-                    <th id="labelText">Category</th>
-                    <th id="labelText">To Accomplish</th>
-                    <th id="labelText">Done</th>
+                    <th id="labelText">Shoe</th>
+                    <th id="labelText">Cost</th>
+                    <th id="labelText">Socks?</th>
                 </tr>
             </thread>
             <tbody>
-                <tr ng-repeat="shoes in vm.shoesList">››
+                <tr ng-repeat="shoes in vm.shoeList">
                     <td>
-                        <input ng-model="shoes.purchaseEntry">
+                        <input ng-model="shoes.shoe">
                     </td>
                     <td>
-                        <input ng-model="tasks.tasksEntry">
+                        <input ng-model="shoes.cost">
                     </td>
                     <td>
-                        <input type="button" ng-model="shoes.completed" ng-click="vm.completeButton(tasks)" />
+                        <input type="checkbox" ng-model="shoes.socks" ng-click="vm.socksButton(shoes)" placeHolder="Socks?" />
                     </td>
 
                     <td>
@@ -44,8 +63,6 @@
                 </tr>
             </tbody>
         </table>
-
-
     </main>
 </body>
 
