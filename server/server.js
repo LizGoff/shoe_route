@@ -35,12 +35,21 @@ const shoes = [
     }
 ];
 
-app.get('/shoe', (req, res) => {
-    console.log('GET /shoe');
-    res.send(shoes);
+app.get('/shoes', (req, res) => {
+    console.log('GET /shoes');
+    pool.query(`SELECT * FROM "shoes"`)
+    //the shoe.name and shoe.cost is the sanitization for security
+    .then((results) => {
+        res.send(results.row);
+})
+.catch((error) => {
+    console.log('Error with Postman pool', error);
+    res.sendStatus(500)
+});
+    // res.send(shoes);
 });
 
-app.post('/shoe', (req, res) => {
+app.post('/shoes', (req, res) => {
     const shoe = req.body;
     pool.query(`INSERT INTO "shoes" ("name", "cost", "socks")
                 VALUES ($1, $2, $3);`, [shoe.name, shoe.cost, shoe.socks]) 

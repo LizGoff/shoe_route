@@ -23,10 +23,12 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <input type="text" ng-model="vm.newShoes.name" placeholder="Shoes" required/>
+                                    <input type="text" ng-model="vm.shoes.name" placeholder="Shoes" required/>
+                                    <!-- //newShoes -->
                                 </td>
                                 <td>
-                                    <input type="text" ng-model="vm.newShoes.cost" placeholder="Cost" required/>
+                                    <input type="text" ng-model="vm.shoes.cost" placeholder="Cost" required/>
+                                    <!-- //newShoes -->
                                 </td>
                                 <td>
                                     <button ng-click="vm.createShoeEntry()">Add</button>
@@ -37,6 +39,7 @@
                 </section>
             </div>
         <div id="shoeTable"></div>
+        {{vm}}
         <table>
             <thread>
                 <tr>
@@ -46,7 +49,7 @@
                 </tr>
             </thread>
             <tbody>
-                <tr ng-repeat="shoes in vm.shoeList">
+                <tr ng-repeat="shoes in vm.shoeList.list">
                     <td>
                         <input ng-model="shoes.shoe">
                     </td>

@@ -6,13 +6,12 @@ app.controller('shoeController', ['$http', function ($http) {
     console.log('shoeController Loaded');
 
     var self = this;
-    self.shoeList = [];
+    self.shoeList = {
+        list: []
+    };
 
-        self.newShoes = {
-            name: '',
-            cost: '',
-            socks: false
-        };
+    self.shoes = {   //newShoes
+    };
 
     self.getShoeEntry = function () {
         $http({
@@ -20,7 +19,7 @@ app.controller('shoeController', ['$http', function ($http) {
             url: '/shoes'
         })
             .then(function (response) {
-                self.shoeList = response.data;
+                self.shoeList.list = response.data;
                 console.log('get response', response.data);
             })
             .catch(function (error) {
@@ -28,25 +27,15 @@ app.controller('shoeController', ['$http', function ($http) {
             });
     };
 
-// ???? place this in the GET????   pool.query(`INSERT INTO "shoes" ("name", "cost", "socks")
-//                                  VALUES ($1, $2, $3);`, [shoe.name, shoe.cost, shoe.socks]) 
-//                                  .then((results) => {
-//                                  res.sendStatus(200);
-//                              })
-//                                  .catch((error) => {
-//                                  console.log('Error with Postman pool', error);
-//                                  res.sendStatus(500)  ????
-
-
     self.createShoeEntry = function () {
         $http({
             method: 'POST',
             url: '/shoes',
-            data: self.newShoes
+            data: self.shoes //newShoes
         })
             .then(function (response) {
-                self.newShoes.name = '';
-                self.newShoes.cost = '';
+                self.shoes.name = '';    //newShoes
+                self.shoes.cost = '';    //newShoes
                 self.getShoeEntry();
                 console.log(response);
             })
@@ -56,7 +45,7 @@ app.controller('shoeController', ['$http', function ($http) {
     };
 
     self.deleteShoes = function (deleteShoes) {
-        console.log(self.newShoes);
+        console.log(self.shoes); //newShoes
         $http({
             method: "DELETE",
             url: "/shoes",
@@ -72,7 +61,7 @@ app.controller('shoeController', ['$http', function ($http) {
     }
 
     self.socksButton = function (socksUpdateSave) {
-        console.log(self.newShoes);
+        console.log(self.shoes); //newShoes
         $http({
             method: "PUT",
             url: "/shoes",
