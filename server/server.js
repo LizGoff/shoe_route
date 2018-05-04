@@ -43,7 +43,7 @@ app.get('/shoes', (req, res) => {
         res.send(results.row);
 })
 .catch((error) => {
-    console.log('Error with Postman pool', error);
+    console.log('Error with SQL GET', error);
     res.sendStatus(500)
 });
     // res.send(shoes);
@@ -51,19 +51,32 @@ app.get('/shoes', (req, res) => {
 
 app.post('/shoes', (req, res) => {
     const shoe = req.body;
-    pool.query(`INSERT INTO "shoes" ("name", "cost", "socks")
-                VALUES ($1, $2, $3);`, [shoe.name, shoe.cost, shoe.socks]) 
+    pool.query(`INSERT INTO "shoes" ("name", "cost")
+                VALUES ($1, $2);`, [shoe.name, shoe.cost]) 
                 //the shoe.name and shoe.cost is the sanitization for security
             .then((results) => {
                 res.sendStatus(200);
             })
             .catch((error) => {
-                console.log('Error with Postman pool', error);
+                console.log('error with SQL INSERT', error);
                 res.sendStatus(500)
             });
     // shoes.push(req.body);
 
 });
+
+// router.post('/', (req, res) => {
+//     const shoe = req.body;
+//     pool.query(`INSERT INTO "shoes" ("name", "cost")
+//                 VALUES ($1, $2);`, [shoe.name, shoe.cost])
+//         .then(() => {
+//             res.sendStatus(200);
+//         })
+//         .catch((error) => {
+//             console.log('error with SQL INSERT', error);
+//             res.sendStatus(500);
+//         });
+// });
 
 app.listen(PORT, function (req, res) {
     console.log('Listening on port', PORT);

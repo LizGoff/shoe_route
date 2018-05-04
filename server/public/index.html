@@ -30,6 +30,9 @@
                                     <input type="text" ng-model="vm.shoes.cost" placeholder="Cost" required/>
                                     <!-- //newShoes -->
                                 </td>
+                                <!-- <td> -->
+                                        <!-- <input type="checkbox" ng-model="shoes.socks" ng-click="vm.socksButton(shoes)" placeHolder="Socks?" /> -->
+                                <!-- </td> -->
                                 <td>
                                     <button ng-click="vm.createShoeEntry()">Add</button>
                                 </td> 
@@ -45,21 +48,20 @@
                 <tr>
                     <th id="labelText">Shoe</th>
                     <th id="labelText">Cost</th>
-                    <th id="labelText">Socks?</th>
+                    <!-- <th id="labelText">Socks?</th> -->
                 </tr>
             </thread>
             <tbody>
                 <tr ng-repeat="shoes in vm.shoeList.list">
                     <td>
-                        <input ng-model="shoes.shoe">
+                        <input ng-model="shoes.name">
                     </td>
                     <td>
                         <input ng-model="shoes.cost">
                     </td>
-                    <td>
-                        <input type="checkbox" ng-model="shoes.socks" ng-click="vm.socksButton(shoes)" placeHolder="Socks?" />
-                    </td>
-
+                    <!-- <td>
+                        <input ng-model="shoes.socks">
+                    </td>     -->
                     <td>
                         <button ng-click="vm.deleteShoes(shoes)">Delete</button>
                     </td>

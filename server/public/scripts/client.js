@@ -25,18 +25,19 @@ app.controller('shoeController', ['$http', function ($http) {
             .catch(function (error) {
                 console.log('error on /shoes Get', error);
             });
-    };
+    }; 
 
-    self.createShoeEntry = function () {
+    self.createShoeEntry = function (shoeList) {
         $http({
             method: 'POST',
             url: '/shoes',
-            data: self.shoes //newShoes
+            data: shoeList   //newShoes
         })
             .then(function (response) {
                 self.shoes.name = '';    //newShoes
                 self.shoes.cost = '';    //newShoes
                 self.getShoeEntry();
+                console.log(self.shoeList.list)
                 console.log(response);
             })
             .catch(function (error) {
